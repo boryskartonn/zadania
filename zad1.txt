@@ -1,0 +1,45 @@
+using System;
+
+namespace ConsoleAppl
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Zgadnij liczbę z przedziału od 100 do 200.");
+
+            Random RNG = new Random();
+            int liczba = RNG.Next(100, 201); // Losowa liczba z przedziału 100-200
+
+            int zgadnij;
+            int liczbaProb = 0;
+
+            while (true)
+            {
+                Console.Write("Podaj swoją liczbę: ");
+                if (int.TryParse(Console.ReadLine(), out zgadnij))
+                {
+                    liczbaProb++;
+
+                    if (zgadnij < liczba)
+                    {
+                        Console.WriteLine("Szukana liczba jest większa.");
+                    }
+                    else if (zgadnij > liczba)
+                    {
+                        Console.WriteLine("Szukana liczba jest mniejsza.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Brawo! Odgadłeś liczbę po {liczbaProb} próbach.");
+                        break; // Zakończenie pętli
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("To nie jest liczba. Spróbuj ponownie.");
+                }
+            }
+        }
+    }
+}
